@@ -586,7 +586,7 @@ namespace SwaggerWcf.Support
             return new Schema
             {
                 TypeFormat = typeFormat,
-                Ref = HttpUtility.HtmlEncode(returnType.FullName)
+                Ref = HttpUtility.HtmlEncode(Helpers.GetTypeName( returnType))
             };
         }
 
@@ -630,7 +630,7 @@ namespace SwaggerWcf.Support
                     return new Schema
                     {
                         TypeFormat = typeFormat,
-                        Ref = HttpUtility.HtmlEncode(t.FullName)
+                        Ref = HttpUtility.HtmlEncode(Helpers.GetTypeName(t))
                     };
                 default:
                     definitionsTypesList.Add(type);
