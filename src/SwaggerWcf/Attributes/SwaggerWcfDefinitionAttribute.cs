@@ -5,7 +5,7 @@ namespace SwaggerWcf.Attributes
     /// <summary>
     ///     Attribute to describe a class as a definition on swagger
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class,Inherited =false)]
     public class SwaggerWcfDefinitionAttribute : Attribute
     {
         /// <summary>
