@@ -126,7 +126,7 @@ namespace SwaggerWcf.Support
             var dca = type.GetCustomAttribute<SwaggerWcf.Attributes.SwaggerWcfDefinitionAttribute>();
 
             var name = dca != null && !string.IsNullOrEmpty(dca.Name) ?
-                dca.Name : type.FullName.Substring(0, type.FullName.IndexOf('`'));
+                dca.Name : (type.IsGenericType? type.FullName.Substring(0, type.FullName.IndexOf('`')):type.FullName);
 
             if (type.IsGenericType)
             {
