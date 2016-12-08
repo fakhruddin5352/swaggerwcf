@@ -11,6 +11,16 @@ namespace SwaggerWcf.Support
 {
     internal sealed class DefinitionsBuilder
     {
+        private static string GetTypeName(Type type)
+        {
+            var dca = type.GetCustomAttribute<DataContractAttribute>();
+            if (type.IsGenericType)
+            {
+                var genericName = string.Join(",", type.GenericTypeArguments.Select(GetTypeName).ToArray());
+                var name = ((dca?.Name) ?? type.FullName) + "[" + genericName + "]";
+            }
+            return dca?.Name ?? type.FullName;
+        }
         public static List<Definition> Process(IList<string> hiddenTags, IList<string> visibleTags, List<Type> definitionsTypes)
         {
             if (definitionsTypes == null || !definitionsTypes.Any())
@@ -52,7 +62,7 @@ namespace SwaggerWcf.Support
         {
             DefinitionSchema schema = new DefinitionSchema
             {
-                Name = definitionType.FullName
+                Name = GetTypeName(definitionType)
             };
 
             ProcessTypeAttributes(definitionType, schema);
@@ -80,7 +90,7 @@ namespace SwaggerWcf.Support
 
                 if (t != null)
                 {
-                    schema.Ref = t.FullName;
+                    schema.Ref =GetTypeName(t);
                     typesStack.Push(t);
                 }
             }
@@ -145,7 +155,7 @@ namespace SwaggerWcf.Support
                         if (st.Type == ParameterType.Array || st.Type == ParameterType.Object)
                         {
                             prop.Items.TypeFormat = new TypeFormat(ParameterType.Unknown, null);
-                            prop.Items.Ref = t.FullName;
+                            prop.Items.Ref = GetTypeName(t);
                         }
                         else
                         {
@@ -223,7 +233,7 @@ namespace SwaggerWcf.Support
             {
                 typesStack.Push(propertyInfo.PropertyType);
 
-                prop.Ref = propertyInfo.PropertyType.FullName;
+                prop.Ref = GetTypeName(propertyInfo.PropertyType);
 
                 return prop;
             }

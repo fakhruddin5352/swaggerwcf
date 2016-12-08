@@ -7,11 +7,11 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>https://raw.githubusercontent.com/abelsilva/swaggerwcf/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/abelsilva/swaggerwcf</projectUrl>
+    <projectUrl>https://github.com/fakhruddin5352/swaggerwcf</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>multiple bugfixes</releaseNotes>
-    <copyright>Copyright 2015</copyright>
+    <copyright>Copyright 2016</copyright>
     <tags>swagger wcf .net c#</tags>
   </metadata>
 </package>
