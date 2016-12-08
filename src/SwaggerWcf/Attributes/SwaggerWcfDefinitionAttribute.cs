@@ -14,12 +14,18 @@ namespace SwaggerWcf.Attributes
         /// <param name="externalDocsDescription">Description external docs description</param>
         /// <param name="externalDocsUrl">Description external docs URL</param>
         public SwaggerWcfDefinitionAttribute(string externalDocsDescription = null,
-                                             string externalDocsUrl = null)
+                                             string externalDocsUrl = null,
+                                             string name = null)
         {
             ExternalDocsDescription = externalDocsDescription;
             ExternalDocsUrl = externalDocsUrl;
+            Name = name;
         }
 
+        /// <summary>
+        ///     Name of the definition
+        /// </summary>
+        public string Name { get; set; }
         /// <summary>
         ///     Description of the external documentation
         /// </summary>

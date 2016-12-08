@@ -17,13 +17,12 @@ namespace SwaggerWcf.Attributes
         /// <param name="emptyResponseOverride">Result has empty response body (override default response type)</param>
         /// <param name="headers">Optional HTTP headers returned</param>
         public SwaggerWcfResponseAttribute(string code, string description = null, bool emptyResponseOverride = false,
-                                           string[] headers = null, Type responseTypeOverride = null)
+                                           string[] headers = null)
         {
             Code = code;
             Description = description;
             EmptyResponseOverride = emptyResponseOverride;
             Headers = headers;
-            ResponseTypeOverride = responseTypeOverride;
         }
 
         /// <summary>
@@ -35,14 +34,12 @@ namespace SwaggerWcf.Attributes
         /// <param name="headers">Optional HTTP headers returned</param>
         public SwaggerWcfResponseAttribute(HttpStatusCode code, string description = null,
                                            bool emptyResponseOverride = false,
-                                           string[] headers = null,
-                                           Type responseTypeOverride = null)
+                                           string[] headers = null)
         {
             Code = ((int) code).ToString();
             Description = description;
             EmptyResponseOverride = emptyResponseOverride;
             Headers = headers;
-            ResponseTypeOverride = responseTypeOverride;
         }
 
         /// <summary>
@@ -53,13 +50,12 @@ namespace SwaggerWcf.Attributes
         /// <param name="emptyResponseOverride">Result has empty response body (override default response type)</param>
         /// <param name="headers">Optional HTTP headers returned</param>
         public SwaggerWcfResponseAttribute(int code, string description = null, bool emptyResponseOverride = false,
-                                           string[] headers = null, Type responseTypeOverride = null)
+                                           string[] headers = null)
         {
             Code = code.ToString();
             Description = description;
             EmptyResponseOverride = emptyResponseOverride;
             Headers = headers;
-            ResponseTypeOverride = responseTypeOverride;
         }
 
         /// <summary>

@@ -118,9 +118,23 @@ namespace SwaggerWcf.Support
             {
                 definitions.Add(type);
             }
-            return new TypeFormat(ParameterType.Object, HttpUtility.HtmlEncode(type.FullName));
+            return new TypeFormat(ParameterType.Object, HttpUtility.HtmlEncode(GetTypeName(type)));
         }
 
+        public static string GetTypeName(Type type)
+        {
+            var dca = type.GetCustomAttribute<SwaggerWcf.Attributes.SwaggerWcfDefinitionAttribute>();
+
+            var name = dca != null && !string.IsNullOrEmpty(dca.Name) ?
+                dca.Name : type.FullName.Substring(0, type.FullName.IndexOf('`'));
+
+            if (type.IsGenericType)
+            {
+                var genericName = string.Join(",", type.GenericTypeArguments.Select(GetTypeName).ToArray());
+                name +=   "[" + genericName + "]";
+            }
+            return name;
+        }
         private static string BuildTypeString(string typeName, string defaultNote = null, string typeNote = null)
         {
             const string resultFormat = "{0}({1})";
