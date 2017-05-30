@@ -81,7 +81,7 @@ namespace SwaggerWcf.Support
             }
             if (type == typeof(Stream))
             {
-                return new TypeFormat(ParameterType.String, "stream");
+                return new TypeFormat(ParameterType.File, "stream");
             }
 
             if (type == typeof(void))
